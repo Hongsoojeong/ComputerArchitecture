@@ -1,29 +1,29 @@
 /// 구조체 비트 필드 사용하기.참고: https://dojang.io/mod/page/view.php?id=472
-//union IR {
-//    unsigned int B;
-//
-//    struct RFormat {
-//        unsigned int funct : 6;
-//        unsigned int shamt : 5;
-//        unsigned int rd : 5;
-//        unsigned int rt : 5;
-//        unsigned int rs : 5;
-//        unsigned int opcode : 6;
-//    } RI;
-//
-//    struct IFormat {
-//        int immediate : 16;
-//        unsigned int rt : 5;
-//        unsigned int rs : 5;
-//        unsigned int op : 6;
-//    } II;
-//
-//    struct JFormat {
-//        unsigned int address : 26;
-//        unsigned int op : 6;
-//    } JI;
-//};
-//
+union IR {
+    unsigned int B;
+
+    struct RFormat {
+        unsigned int funct : 6;
+        unsigned int shamt : 5;
+        unsigned int rd : 5;
+        unsigned int rt : 5;
+        unsigned int rs : 5;
+        unsigned int opcode : 6;
+    } RI;
+
+    struct IFormat {
+        int immediate : 16;
+        unsigned int rt : 5;
+        unsigned int rs : 5;
+        unsigned int op : 6;
+    } II;
+
+    struct JFormat {
+        unsigned int address : 26;
+        unsigned int op : 6;
+    } JI;
+};
+
 //// OPCODE
 //enum OPCODE {
 //    R_FORMAT = 0,
