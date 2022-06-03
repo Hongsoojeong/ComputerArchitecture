@@ -65,9 +65,9 @@
 //       case MUL:     return mul(rs, rt);
 //       case ADD:     return add(rd, rs, rt);
 //       case SUB:     return sub(rd, rs, rt);
-//       case AND:     return and(rd, rs, rt);
-//       case OR:      return or(rd, rs, rt);
-//       case XOR:     return xor(rd, rs, rt);
+//       case AND:     return AND(rd, rs, rt);
+//       case OR:      return OR(rd, rs, rt);
+//       case XOR:     return XOR(rd, rs, rt);
 //       case NOR:     return nor(rd, rs, rt);
 //       case SLT:     return slt(rd, rs, rt);
 //       default:      printf("잘못된 명령어입니다\n");
