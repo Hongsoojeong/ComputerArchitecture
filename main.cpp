@@ -79,18 +79,14 @@ int main(void) {
             addr = 0;
             for (int i = 0; i < (int)iCount; i++) {
                 fread(&data, sizeof(unsigned int), 1, fptr);
-                //int offset = i + 2; // 명령어 길이, 데이터 길이 워드 다음 인덱스
                 data = invertEndian(data);
-                //printf("In file, instruction is: ");
-
                 MEM(0x400000 + 4 * i, data, 1, 2);
                 addr += 4;
             }
             for (int i = 0; i < (int)dCount; i++) {
                 fread(&data, sizeof(unsigned int), 1, fptr);
-                //int offset = i + 2 + iCount; // 명령어 길이, 데이터 길이, 명령어 워드 다음 인덱스
                 data = invertEndian(data);
-                printf("파일에서 읽은 데이터: %x\n", data);
+                //printf("파일에서 읽은 데이터: %x\n", data);
                 MEM(0x10000000 + 4 * i, data, 1, 2);
 
             }
@@ -112,13 +108,38 @@ int main(void) {
             //stepProgram();
         }
         else if (!strcmp(cmd, "j")) {
-            //stepProgram();
+            //jumpProgram();
         }
         else if (!strcmp(cmd, "sm")) {
-            //stepProgram();
+            scanf_s("%s", rn);
+            getchar();
+            scanf_s("%s", value);
+            getchar();
+            temp_rn = atoi(rn);
+            temp_v = (unsigned int)strtoul(value, NULL, 16);
+            if (!temp_v)
+                printf("Error value\n");
+            if ((temp_rn > 31) || (temp_rn < 0))
+                printf("Error register number\n");
+            else {
+                printf("Success set register\n");
+            }
         }
         else if (!strcmp(cmd, "sr")) {
-            //stepProgram();
+            scanf_s("%s", rn);
+            getchar();
+            scanf_s("%s", value);
+            getchar();
+            temp_rn = atoi(rn);
+            temp_v = (unsigned int)strtoul(value, NULL, 16);
+            if (!temp_v)
+                printf("Error value\n");
+            if ((temp_rn > 31) || (temp_rn < 0))
+                printf("Error register number\n");
+            else if (setRegister(temp_rn, temp_v))
+                printf("Success set register\n");
+            else
+                printf("Error set register\n");
         }
          
     }
