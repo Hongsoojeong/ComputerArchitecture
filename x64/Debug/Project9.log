@@ -1,1 +1,6 @@
-﻿  Project9.vcxproj -> C:\Users\MinSeo\source\repos\Project9\x64\Debug\Project9.exe
+﻿  memory.cpp
+C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\uFFFD'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\u07F8'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\u07B8'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\u05BC'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+  Project9.vcxproj -> C:\Users\MinSeo\source\repos\Project9\x64\Debug\Project9.exe

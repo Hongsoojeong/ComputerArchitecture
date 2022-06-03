@@ -8,6 +8,7 @@
 //#include "instruction_execution.h"
 #define R_SIZE 32
 
+
 int PC = 0x400000;
 int HI = 0;
 int LO = 0; //PC,HI,LO ���������� ����
