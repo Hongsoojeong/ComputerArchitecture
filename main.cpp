@@ -95,8 +95,9 @@ int main(void) {
 
         }
         else if (!strcmp(cmd, "m")) {
-            unsigned int start = 0, end = 1048576;
-            viewMemory(start, end);
+            /*unsigned int start = 0, end = 1048576;
+            viewMemory(start, end);*/
+            viewMemory(0x10000000, 0x10000100);
         }
         else if (!strcmp(cmd, "r")) {
             viewRegister();
