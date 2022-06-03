@@ -218,12 +218,27 @@ int main(void) {
         }
         else if (!strcmp(cmd, "m")) {
             viewMemory(STAK_START, STAK_START + 8);
-            break;
         }
         else if (!strcmp(cmd, "r")) {
             viewRegister();
-            break;
         }
+        else if (!strcmp(cmd, "g")) {
+            //goProgram();
+            
+        }
+        else if (!strcmp(cmd, "s")) {
+            //stepProgram();
+        }
+        else if (!strcmp(cmd, "j")) {
+            //stepProgram();
+        }
+        else if (!strcmp(cmd, "sm")) {
+            //stepProgram();
+        }
+        else if (!strcmp(cmd, "sr")) {
+            //stepProgram();
+        }
+         
     }
     printf("program exit\n");
     free(filename);
