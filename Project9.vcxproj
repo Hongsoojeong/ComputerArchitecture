@@ -139,14 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="alu.cpp" />
     <ClCompile Include="decode.cpp" />
+    <ClCompile Include="instruction_execution.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="register.cpp" />
     <ClCompile Include="step.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="alu.h" />
     <ClInclude Include="decode.h" />
+    <ClInclude Include="instruction_execution.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="register.h" />
     <ClInclude Include="step.h" />
