@@ -1,6 +1,7 @@
-﻿  memory.cpp
-C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\uFFFD'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
-C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\u07F8'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
-C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\u07B8'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
-C:\Users\MinSeo\source\repos\Project9\Project9\memory.cpp(34,10): warning C4566: 유니버설 문자 이름 '\u05BC'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+﻿  main.cpp
+C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(36,17): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'unsigned __int64'입니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(36,17): message : 이 인수는 버퍼 크기로 사용됩니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(30,27): warning C4101: 'temp_v' :참조되지 않은 지역 변수입니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(30,18): warning C4101: 'temp_rn' :참조되지 않은 지역 변수입니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(55,27): warning C4101: 'binary_buffer' :참조되지 않은 지역 변수입니다.
   Project9.vcxproj -> C:\Users\MinSeo\source\repos\Project9\x64\Debug\Project9.exe

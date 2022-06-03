@@ -33,6 +33,14 @@ void viewRegister()//r
 		printf("%5s : %x\n", n, ret);
 	}
 }
+void resetReg() {
+	for (int i = 0; i < R_SIZE; i++) {
+		REG(i, 0, 1);
+	}
+	HI = 0;
+	LO = 0;
+	REG(29, 0x80000000, 1);
+}
 
 int setRegister(unsigned int A, int V) {
 	REG(A, V, 1);

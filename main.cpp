@@ -72,6 +72,8 @@ int main(void) {
 
             //=======================================================
             // load to memory
+            //resetMem();
+            //resetReg();
 
         // Load to memory
             addr = 0;
@@ -97,7 +99,7 @@ int main(void) {
 
         }
         else if (!strcmp(cmd, "m")) {
-            viewMemory(0x10000000, 0x10000000 + 8);
+            viewMemory(0x400000, 0x400000 + 8);
         }
         else if (!strcmp(cmd, "r")) {
             viewRegister();

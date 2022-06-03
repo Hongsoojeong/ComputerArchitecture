@@ -81,7 +81,7 @@ int MEM(unsigned int A, int V, int nRW, int S) {
 	return 0;
 }
 
-void resetMem(void)
+void resetMem()
 {
 	int i;
 	for (i = 0; i < M_SIZE; i++) {
