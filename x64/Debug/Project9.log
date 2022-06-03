@@ -1,7 +1,1 @@
-﻿  main.cpp
-C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(158,17): warning C4477: 'scanf_s' : 서식 문자열 '%s'에 'unsigned int' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'unsigned __int64'입니다.
-C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(158,17): message : 이 인수는 버퍼 크기로 사용됩니다.
-C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(152,27): warning C4101: 'temp_v' :참조되지 않은 지역 변수입니다.
-C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(152,18): warning C4101: 'temp_rn' :참조되지 않은 지역 변수입니다.
-C:\Users\MinSeo\source\repos\Project9\Project9\main.cpp(177,27): warning C4101: 'binary_buffer' :참조되지 않은 지역 변수입니다.
-  Project9.vcxproj -> C:\Users\MinSeo\source\repos\Project9\x64\Debug\Project9.exe
+﻿  Project9.vcxproj -> C:\Users\MinSeo\source\repos\Project9\x64\Debug\Project9.exe

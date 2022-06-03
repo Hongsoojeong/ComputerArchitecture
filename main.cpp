@@ -195,26 +195,28 @@ int main(void) {
             //=======================================================
             // load to memory
 
-    // Load to memory
+        // Load to memory
             addr = 0;
             for (int i = 0; i < (int)iCount; i++) {
                 fread(&data, sizeof(unsigned int), 1, fptr);
+                //int offset = i + 2; // 명령어 길이, 데이터 길이 워드 다음 인덱스
                 data = invertEndian(data);
-                memoryWrite(addr, data);
+                //printf("In file, instruction is: ");
+
+                MEM(0x400000 + 4 * i, data, 1, 2);
                 addr += 4;
             }
+            for (int i = 0; i < (int)dCount; i++) {
+                fread(&data, sizeof(unsigned int), 1, fptr);
+                //int offset = i + 2 + iCount; // 명령어 길이, 데이터 길이, 명령어 워드 다음 인덱스
+                data = invertEndian(data);
+                printf("파일에서 읽은 데이터: %x\n", data);
+                MEM(0x10000000 + 4 * i, data, 1, 2);
 
-            //Decoding
-            unsigned int PC = 0; // program counter
-            for (int i = 0; i < (int)iCount; i++) {
-                IR = memoryRead(PC); // instruction fetch
-                PC += 4;
-                instructionDecode(); // instruction decode
             }
 
             fclose(fptr);
 
-            return 0;
         }
         else if (!strcmp(cmd, "m")) {
             viewMemory(STAK_START, STAK_START + 8);
