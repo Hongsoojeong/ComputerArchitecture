@@ -95,7 +95,8 @@ int main(void) {
 
         }
         else if (!strcmp(cmd, "m")) {
-            viewMemory(0x400000, 0x400000 + 8);
+            unsigned int start = 0, end = 1048576;
+            viewMemory(start, end);
         }
         else if (!strcmp(cmd, "r")) {
             viewRegister();
@@ -141,6 +142,7 @@ int main(void) {
             else
                 printf("Error set register\n");
         }
+
          
     }
     printf("program exit\n");

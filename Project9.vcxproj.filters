@@ -24,12 +24,24 @@
     <ClCompile Include="register.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="step.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="decode.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="memory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="register.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="step.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="decode.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

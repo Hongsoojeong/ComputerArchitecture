@@ -139,13 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="decode.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="register.cpp" />
+    <ClCompile Include="step.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="decode.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="register.h" />
+    <ClInclude Include="step.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
