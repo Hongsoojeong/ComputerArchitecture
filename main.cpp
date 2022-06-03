@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "memory.h"
+#include "register.h"
 #define _crt_secure_no_warnings
 
 #define buffer_size 1024
@@ -20,7 +22,7 @@ unsigned int invertEndian(unsigned int data)
 }
 
 const int M_SIZE = 1024;
-unsigned char MEM[M_SIZE];
+unsigned char MEMORY[M_SIZE];
 
 unsigned int memoryRead(unsigned int addr) {
     unsigned int data;
@@ -30,7 +32,7 @@ unsigned int memoryRead(unsigned int addr) {
         addr &= 0xFFFFFFFC; // make aligned address
     }
 
-    data = *(unsigned int*)&MEM[addr];
+    data = *(unsigned int*)&MEMORY[addr];
     data = invertEndian(data);
 
     return data;
@@ -42,7 +44,7 @@ void memoryWrite(unsigned int addr, unsigned int data) {
         addr &= 0xFFFFFFFC; // ignore the least 2 bits
     }
 
-    *(unsigned int*)&MEM[addr] = invertEndian(data);
+    *(unsigned int*)&MEMORY[addr] = invertEndian(data);
 
     return;
 }
@@ -215,11 +217,11 @@ int main(void) {
             return 0;
         }
         else if (!strcmp(cmd, "m")) {
-            //viewMemory(STAK_START, STAK_START + 8);
+            viewMemory(STAK_START, STAK_START + 8);
             break;
         }
         else if (!strcmp(cmd, "r")) {
-            //viewRegister();
+            viewRegister();
             break;
         }
     }
