@@ -31,14 +31,6 @@
    PC = address;
  }
 
- //union IR instructionFetch() {
- //   // 1. PC 값을 읽어서 메모리에서 명령어 가져오기
- //  unsigned int word = MEM(PC, 0, 0, 2);
- //  union IR instruction = (union IR)word;
- //  // 2. PC 값 4 상승
- //  PC += 4;
- //  return instruction;
- //}
  unsigned int getRiOp(IR ir) { return ir.RI.opcode; }
  unsigned int getRiRs(IR ir) { return ir.RI.rs; }
  unsigned int getRiRt(IR ir) { return ir.RI.rt; }
