@@ -1,4 +1,3 @@
-
 #include "memory.h"
 #include "register.h"
 #include "decode.h"
@@ -8,11 +7,12 @@
 
 
 extern unsigned int REGISTER[32];
-// register.cø° ¿÷¥¬ PCøÕ HI, LO ∞™¿ª ¬¸¡∂«‘
+// register.cÏóê ÏûàÎäî PCÏôÄ HI, LO Í∞íÏùÑ Ï∞∏Ï°∞Ìï®
 extern int PC;
 extern int HI;
 extern int LO;
-int* z;
+extern int* Z;
+
 enum FROM_ALU {
     Add = 8,
     Sub = 9,
@@ -23,60 +23,56 @@ enum FROM_ALU {
     SetLess = 4
 };
 
-
-int add(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Add, NULL);
-    printf("[ADD] : REGISTER[rd] %x\n", REGISTER[rd]);
+int addTest(int rd, int rs, int rt) {
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Add, &Z);
     return 0;
 }
 
 
 int addi(int rt, int rs, int imm) {
-    REGISTER[rt] = ALU(REGISTER[rs], imm, Add, NULL);
-    // printf("[ADDI] : REGISTER[rd] %x\n", REGISTER[rd]);
+    REGISTER[rt] = ALU(REGISTER[rs], imm, Add, &Z);
     return 0;
 }
 
 int sub(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Sub, NULL);
-    printf("[SUB] : REGISTER[rd] %x\n", REGISTER[rd]);
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Sub, &Z);
+    
     return 0;
 }
 
-int AND(int rd, int rs, int rt){
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], And, NULL);
-    //  printf("[AND] : REGISTER[rd] %x\n", REGISTER[rd]);
+int aNd(int rd, int rs, int rt) {
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], And, &Z);
+    
     return 0;
 }
 
+int oR(int rd, int rs, int rt) {
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Or, &Z);
 
-int OR(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Or, NULL);
-    //  printf("[OR] : REGISTER[rd] %x\n", REGISTER[rd]);
     return 0;
 }
 
-int XOR(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Xor, NULL);
-    //   printf("[XOR] : REGISTER[rd] %x\n", REGISTER[rd]);
+int xOr(int rd, int rs, int rt) {
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Xor, Z);
+    
     return 0;
 }
 
 int nor(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Nor, NULL);
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Nor, Z);
     //   printf("[NOR] : REGISTER[rd] %x\n", REGISTER[rd]);
     return 0;
 }
 
 //SET ON LESS THAN
 int slt(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], SetLess, NULL);
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], SetLess, Z);
     //  printf("[SLT] : REGISTER[rd] %x\n", REGISTER[rd]);
     return 0;
 }
 
 //jump and link
-//¥Ÿ¿Ω ∏Ì∑…æÓ¿« ¡÷º“(PC+4)∏¶ $raø° ¿˙¿Â«œ∞Ì «ÿ¥Á address∑Œ ¡°«¡
+//Îã§Ïùå Î™ÖÎ†πÏñ¥Ïùò Ï£ºÏÜå(PC+4)Î•º $raÏóê Ï†ÄÏû•ÌïòÍ≥† Ìï¥Îãπ addressÎ°ú Ï†êÌîÑ
 int jal(int address) {
     int $ra = 31;
     REGISTER[$ra] = PC;
@@ -84,26 +80,28 @@ int jal(int address) {
     return 0;
 }
 
-// 0∫∏¥Ÿ ¿€¿ª ∞ÊøÏ ∫–±‚ «—¥Ÿ.
+// 0Î≥¥Îã§ ÏûëÏùÑ Í≤ΩÏö∞ Î∂ÑÍ∏∞ ÌïúÎã§.
 int bltz(int rs, int rt, int imm) {
     if (REGISTER[rs] < REGISTER[rt])
         PC += (imm * 4);
     return 0;
 }
 
-// beq¥¬ µŒ ««ø¨ªÍ¿⁄∏¶ ∫Ò±≥«ÿ ∞∞¿∏∏È ªı∑ŒøÓ ¡÷º“∑Œ ¿Ãµø, ∞∞¡ˆ æ ¿∏∏È ¡˜»ƒ¿« ∏Ì∑…æÓ∏¶ ºˆ«‡
+// beqÎäî Îëê ÌîºÏó∞ÏÇ∞ÏûêÎ•º ÎπÑÍµêÌï¥ Í∞ôÏúºÎ©¥ ÏÉàÎ°úÏö¥ Ï£ºÏÜåÎ°ú Ïù¥Îèô, Í∞ôÏßÄ ÏïäÏúºÎ©¥ ÏßÅÌõÑÏùò Î™ÖÎ†πÏñ¥Î•º ÏàòÌñâ
 int beq(int rs, int rt, int imm) {
     if (REGISTER[rs] == REGISTER[rt])
         PC += (imm * 4);
     return 0;
 }
 
-// bne¥¬ µŒ ««ø¨ªÍ¿⁄∏¶ ∫Ò±≥«ÿ ¥Ÿ∏£∏È ªı∑ŒøÓ ¡÷º“∑Œ ¿Ãµø, ∞∞¿∏∏È ¡˜»ƒ¿« ∏Ì∑…æÓ∏¶ ºˆ«‡
+// bneÎäî Îëê ÌîºÏó∞ÏÇ∞ÏûêÎ•º ÎπÑÍµêÌï¥ Îã§Î•¥Î©¥ ÏÉàÎ°úÏö¥ Ï£ºÏÜåÎ°ú Ïù¥Îèô, Í∞ôÏúºÎ©¥ ÏßÅÌõÑÏùò Î™ÖÎ†πÏñ¥Î•º ÏàòÌñâ
 int bne(int rs, int rt, int imm) {
     if (REGISTER[rs] != REGISTER[rt])
         PC += (imm * 4);
     return 0;
 }
+
+int* z;
 
 int slti(int rt, int rs, int imm) {
     int ret;
@@ -145,7 +143,7 @@ int lw(int rt, int imm, int rs) {
     return 0;
 }
 int sw(int rt, int imm, int rs) {
-    MEM(REG(rs, 0, 0) + 4 * imm, REG(rt, 0, 0), 1, 2);
+    //MEM(REG(rs, 0, 0) + 4 * imm, REG(rt, 0, 0), 1, 2);
     return 0;
 
 }
@@ -172,20 +170,19 @@ int lbu(int rt, int imm, int rs) {
 
 
 int sll(int rd, int rt, int sh) {
-    REGISTER[rd] = ALU(REGISTER[rt], sh, 1, NULL);
-    printf("[SLL] : REGISTER[rd] %x\n", REGISTER[rd]);
+    REGISTER[rd] = ALU(REGISTER[rt], sh, 1, &Z);
+    printf("%d", rt);
+    printf("%d", REGISTER[rt]);
     return 0;
 }
 
 int srl(int rd, int rt, int sh) {
     REGISTER[rd] = ALU(REGISTER[rt], sh, 2, NULL);
-    printf("[SRL] : REGISTER[rd] %x\n", REGISTER[rd]);
     return 0;
 }
 
 int sra(int rd, int rt, int sh) {
     REGISTER[rd] = ALU(REGISTER[rt], sh, 3, NULL);
-    printf("[SRA] : REGISTER[rd] %x\n", REGISTER[rd]);
     return 0;
 }
 
@@ -194,40 +191,27 @@ int jr(int rs) {
     return 0;
 }
 int j(int address) {
-    // PC °Á {(PC + 4)[31:28], address, 00}
+    // PC ‚Üê {(PC + 4)[31:28], address, 00}
     PC = ((PC + 4) & 0xf0000000) | (address << 2);
     return 0;
 }
-
-int syscall()
-{
-    if (REGISTER[2] == 1)
-    {
-        printf("%d\n", REGISTER[4]);
-        return 0;
+int syscall() {
+    switch (REGISTER[2]) {
+    case 1:  printf("%d\n", REGISTER[4]); break;
+    case 10: printf("exit program\n"); return 1;
+    case 11: printf("%c\n", REGISTER[4]); break;
     }
-    if (REGISTER[2] == 10) {
-        printf("exit program\n");
-        return 1;
-    }
-    if (REGISTER[2] == 11) {
-        printf("%c\n", REGISTER[4]);
-        return 0;
-    }
-
     return 0;
 }
 
 int mfhi(int rd) {
     REGISTER[rd] = HI;
-    printf("[MFHI] : REGISTER[rd] %x\n", REGISTER[rd]);
     return 0;
 }
 
 int mflo(int rd) {
 
     REGISTER[rd] = LO;
-    printf("[MFLO] : REGISTER[rd] %x\n", REGISTER[rd]);
     return 0;
 }
 
@@ -236,7 +220,6 @@ int mul(int rs, int rt) {
     long long int result = (long long int)REGISTER[rs] * (long long int)REGISTER[rt];
     HI = result >> 32;
     LO = (result << 32) >> 32;
-    printf("[MUL] : result %x\n", result);
 
     return 0;
 }

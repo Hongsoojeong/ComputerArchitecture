@@ -15,25 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="memory.cpp">
+    <ClCompile Include="memory.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="register.cpp">
+    <ClCompile Include="register.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="step.cpp">
+    <ClCompile Include="step.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="decode.cpp">
+    <ClCompile Include="decode.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="alu.cpp">
+    <ClCompile Include="alu.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="instruction_execution.cpp">
+    <ClCompile Include="instruction_execution.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="load.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,6 +57,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="instruction_execution.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="load.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

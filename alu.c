@@ -36,8 +36,8 @@ int logicOperation(int X, int Y, int C)
 int shiftOperation(int V, int Y, int C)
 {
     int ret;
-
-    if (C < 0 || C > 3 || V > 31) {
+    //    printf("%d\n", V);
+    if (C < 0 || C > 3 ){
         printf("error in shiftOperation()...\n");
         return 0;
     }
@@ -80,7 +80,6 @@ int ALU(int X, int Y, int C, int* Z) {
     c10 = C & 3;      // 1, 0 bit of Control input
 
     if (c32 == 0) { // shift
-
         ret = shiftOperation(X, Y, c10);
     }
     else if (c32 == 1) {  // set less

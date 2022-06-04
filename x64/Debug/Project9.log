@@ -1,3 +1,16 @@
-﻿  step.cpp
-C:\Users\MinSeo\source\repos\Project9\Project9\decode.h(1,1): warning C4828: 파일에 0x802 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
+﻿  instruction_execution.c
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\MinSeo\source\repos\Project9\Project9\decode.h(1,1): warning C4828: 파일에 0x782 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(27,59): warning C4047: '함수': 'int *'의 간접 참조 수준이 'int **'과(와) 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(27,57): warning C4024: 'ALU': 형식 및 실제 매개 변수 4의 형식이 서로 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(33,50): warning C4047: '함수': 'int *'의 간접 참조 수준이 'int **'과(와) 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(33,48): warning C4024: 'ALU': 형식 및 실제 매개 변수 4의 형식이 서로 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(38,59): warning C4047: '함수': 'int *'의 간접 참조 수준이 'int **'과(와) 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(38,57): warning C4024: 'ALU': 형식 및 실제 매개 변수 4의 형식이 서로 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(44,59): warning C4047: '함수': 'int *'의 간접 참조 수준이 'int **'과(와) 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(44,57): warning C4024: 'ALU': 형식 및 실제 매개 변수 4의 형식이 서로 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(50,58): warning C4047: '함수': 'int *'의 간접 참조 수준이 'int **'과(와) 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(50,56): warning C4024: 'ALU': 형식 및 실제 매개 변수 4의 형식이 서로 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(173,47): warning C4047: '함수': 'int *'의 간접 참조 수준이 'int **'과(와) 다릅니다.
+C:\Users\MinSeo\source\repos\Project9\Project9\instruction_execution.c(173,45): warning C4024: 'ALU': 형식 및 실제 매개 변수 4의 형식이 서로 다릅니다.
   Project9.vcxproj -> C:\Users\MinSeo\source\repos\Project9\x64\Debug\Project9.exe

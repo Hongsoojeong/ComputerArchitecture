@@ -8,14 +8,14 @@
 //#include "instruction_execution.h"
 #define R_SIZE 32
 
-
+int* Z;
 int PC = 0x400000;
 int HI = 0;
 int LO = 0; //PC,HI,LO ���������� ����
 // unsigned int IR; //instruction register
 
 unsigned int REGISTER[R_SIZE]; //register
-char REGISTER_NAME[R_SIZE][6] = { "$zero", "$at", "$v0", "$v1", "$a0", "$a1", "$a2", "$a3","$t0", "$t1", "$t2", "$t3", "$t4", "$t5", "$t6", "$t7","$s0", "$s1", "$s2", "$s3", "$s4", "$s5", "$s6", "$s7", "$t8", "$t9", "$k0", "$k1","$gp","$sp","$fp","$ra" };
+char REGISTER_NAME[R_SIZE][6] = { "$zero", "$at", "$v0", "$v1", "$a0", "$a1", "$a2", "$a3" , "$t0" , "$t1", "$t2", "$t3", "$t4", "$t5", "$t6", "$t7","$s0", "$s1", "$s2", "$s3", "$s4", "$s5", "$s6", "$s7", "$t8", "$t9", "$k0", "$k1","$gp","$sp","$fp","$ra" };
 //register �̸�
 
 unsigned int REG(unsigned int A, int V, int nRW)
