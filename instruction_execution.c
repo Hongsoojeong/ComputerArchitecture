@@ -132,7 +132,9 @@ int xori(int rt, int rs, int imm) {
     return 0;
 }
 int lui(int rt, int imm) {//load upper immediate
-    REG(rt, (imm & 0xffff) << 16, 1);
+    //REG(rt, (imm & 0xffff) << 16, 1);
+    REGISTER[rt] = (imm & 0xffff) << 16;
+    
     return 0;
 }
 
@@ -171,8 +173,6 @@ int lbu(int rt, int imm, int rs) {
 
 int sll(int rd, int rt, int sh) {
     REGISTER[rd] = ALU(REGISTER[rt], sh, 1, &Z);
-    printf("%d", rt);
-    printf("%d", REGISTER[rt]);
     return 0;
 }
 
