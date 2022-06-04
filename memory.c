@@ -31,7 +31,9 @@ int MEM(unsigned int A, int V, int nRW, int S) {
 	else if (sel == 0x100) pM = dataMEM; //data memory
 	else if (sel == 0x7FF)pM = stakMEM; //stack
 	else {
-		printf("Error: �߸��� �޸� �ּ�\n");
+		printf("\n");
+		printf("<<<<< [Error] Wrong Memory Access >>>>>\n");
+		printf("\n");
 		return -1;
 	}
 	//offset processing for alignment
@@ -47,7 +49,7 @@ int MEM(unsigned int A, int V, int nRW, int S) {
 	else if (S == 1) {//half word
 		printf("%x", offset);
 		if ((offset & 1) != 0) {
-			printf("Unaligned access error");
+			printf("[Error] Unaligned Access\n");
 			offset &= 0xfffffffe;
 		}
 		if (nRW == 0) { //read
@@ -61,7 +63,7 @@ int MEM(unsigned int A, int V, int nRW, int S) {
 	}
 	else if (S == 2) {//word
 		if ((offset & 3) != 0) {
-			printf("Unaligned access error");
+			printf("[Error] Unaligned Access\n");
 			offset &= 0xfffffffc;
 		}
 		if (nRW == 0) { //read
@@ -93,10 +95,16 @@ void resetMem()
 
 void viewMemory(unsigned int start, unsigned int end)
 {
+	printf("\n\n");
+	printf("========= View Memory =========");
+	printf("\n\n");
 	for (unsigned int add = start; add <= end; add += 4) {
 		int val = MEM(add, 0, 0, 2);
 		printf("%x : %x \n", add, val);
 	}
+	printf("\n");
+	printf("=========== END ===========");
+	printf("\n\n");
 }
 void setMemory(unsigned int A, int V)
 {

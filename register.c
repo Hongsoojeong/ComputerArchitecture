@@ -27,11 +27,18 @@ unsigned int REG(unsigned int A, int V, int nRW)
 
 void viewRegister()//r
 {
+	printf("\n\n");
+	printf("========View Register =========\n");
+	printf("\n");
 	for (int i = 0; i < R_SIZE; i++) {
 		char* n = REGISTER_NAME[i]; // $zero ~ $ra
 		unsigned int ret = REG(i, 0, 0);
-		printf("%5s : %x\n", n, ret);
+		printf(" [%s] : %x\n", n, ret);
 	}
+	printf("\n");
+	printf("============ END ===========\n");
+	printf("\n\n");
+
 }
 void resetReg() {
 	for (int i = 0; i < R_SIZE; i++) {

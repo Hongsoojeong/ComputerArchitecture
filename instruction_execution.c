@@ -197,7 +197,7 @@ int j(int address) {
 int syscall() {
     switch (REGISTER[2]) {
     case 1:  printf("%d\n", REGISTER[4]); break;
-    case 10: printf("exit program\n"); return 1;
+    case 10: printf("\n\n*** EXIT THE PROGRAM ***\n\n"); return 1;
     case 11: printf("%c\n", REGISTER[4]); break;
     }
     return 0;

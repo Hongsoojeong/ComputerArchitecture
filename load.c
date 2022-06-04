@@ -38,31 +38,41 @@ void loadProgram(const char* filename) {
     // 명령어, 데이터 길이 구하기
     unsigned int num_instruction = invertEndian(((unsigned int*)BINARY_BUFFER)[0]);
     unsigned int num_data = invertEndian(((unsigned int*)BINARY_BUFFER)[1]);
-
-    printf("명령어 개수: %d\n", num_instruction);
-    printf("데이터 개수: %d\n", num_data);
-
+    printf("\n");
+   
+    printf("========= Loading Program =========\n");
+    printf("\n");
+    printf("Insturction Count: %d\n", num_instruction);
+    printf("    Data Count   : %d\n", num_data);
+    printf("\n");
     // 프로그램, 스택 포인터 초기화
     PC = 0x400000;
 
     // 메모리, 레지스터 초기화
     resetMem();
     resetReg();
-
+    printf("\n");
+    printf("\n");
+    printf("[Insturction] \n");
     // 명령어를 메모리에 적재하기
     for (int i = 0; i < num_instruction; i++) {
         int offset = i + 2; // 명령어 길이, 데이터 길이 워드 다음 인덱스
         unsigned int word = invertEndian(((unsigned int*)BINARY_BUFFER)[offset]);
-        printf("읽은 명령어: "); 
         printInstruction(word);
         MEM(0x400000 + 4 * i, word, WRITE, WORD);
     }
-
+    printf("\n");
+    printf("\n");
+    printf("[Data] \n");
     // 데이터를 메모리에 적재하기
         for (int i = 0; i < num_data; i++) {
             int offset = i + 2 + num_instruction; // 명령어 길이, 데이터 길이, 명령어 워드 다음 인덱스
             unsigned int word = invertEndian(((unsigned int*)BINARY_BUFFER)[offset]);
-            printf("읽은 데이터: %x\n", word);
+            printf("%x\n", word);
             MEM(0x10000000 + 4 * i, word, WRITE, WORD);
         }
+
+        printf("===========   END   ===========");
+        printf("\n");
+        printf("\n");
 }

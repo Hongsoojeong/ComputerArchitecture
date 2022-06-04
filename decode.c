@@ -64,7 +64,7 @@ void instructionToString(unsigned int word, char** str) {
             sprintf(*str, "%s %s, %d(%s)", op, rt, immediate, rs);
             break;
         default:
-            sprintf(*str, "Unknown Instruction: %x", instruction.B);
+            sprintf(*str, "[Unknown] Detect The Unkown Instuction -> %x", instruction.B);
         }
     }
 }

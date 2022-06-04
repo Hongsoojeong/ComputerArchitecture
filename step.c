@@ -11,27 +11,19 @@ extern int LO;
 extern int PC;
 
 union IR instructionFetch() {
-    // 1. PC ���� �о �޸𸮿��� ���ɾ� ��������
     unsigned int word = MEM(PC, 0, 0, 2);
-    //union IR instruction = (union IR)word;
     union IR instruction = { word };
-    // 2. PC �� 4 ���
     PC += 4;
     return instruction;
 }
 
 int stepProgram() {
 
-    // 1. Instruction Fetch: ���ɾ� ��������
     union IR instruction = instructionFetch();
-    //printf("instruction.B : %d\n", instruction);Ȯ�ο�
-    printf("Executed instruction:\n");
+    printf("\n");
+    printf("> Excuting Instruction < \n");
     printInstruction(instruction.B);
- //���ɾ� ��� (i)
 
-//   // �ӽ÷� ���ɾ 0x00000000�̸� ���� ����
-//   // 0x00000000�� ���ɾ ������ (sll 0 0 0)
-//   // go ���ɾ� ���� �� ���� ����� ���� ����
     if (instruction.B == 0) return 1;
 
     //   // 2. Instruction Decode: ���ɾ� �ؼ�
@@ -44,9 +36,7 @@ int stepProgram() {
     unsigned int address = instruction.JI.address;
     unsigned int u_imm = instruction.II.operand & 0xffff;
     int imm = instruction.II.operand; // Sign Extendted
-    //printf("opcode: %x, funct: %x, rs:%x, rt:%x, rd:%x, sh:%x, address:%x, u_imm:%x, imm:%x\n", opcode, funct, rs, rt, rd, sh, address, u_imm, imm);
 
-   // 3. EX, MA, RW: ���ɾ �б��ϰ� �ش�Ǵ� �Լ� ����
     if (opcode == R_FORMAT) {
         switch (funct) {
             case SLL:     return sll(rd, rt, sh);
@@ -64,7 +54,7 @@ int stepProgram() {
             case XOR:     return xOr(rd, rs, rt);
             case NOR:     return nor(rd, rs, rt);
             case SLT:     return slt(rd, rs, rt);
-            default:      printf("�߸��� ���ɾ��Դϴ�\n");
+            default:      printf("[Unknown] Instuction\n");
         }
     }
     else {
@@ -85,21 +75,20 @@ int stepProgram() {
             case LB:   return lb(rt, imm, rs);
             case SB:   return sb(rt, imm, rs);
             case LBU:  return lbu(rt, imm, rs);
-            default:   printf("�߸��� ���ɾ��Դϴ�\n");
+            default:   printf("[Unknown] Instuction\n");
         }
     }
-
-    return 1; // ���α׷� �������� 1 ��ȯ, �ƴϸ� 0 ��ȯ
+    printf("\n");
+    printf("============== END ==============\n\n");
+    return 1; 
 }
 void goProgram()
 {
-    // ���α׷� syscall 10���� ����
     while (1) {
         int end = stepProgram();
         if (end) return;
     }
 }
 void jumpProgram(unsigned int address) {
-    // PC�� address�� ����
     PC = address;
 }

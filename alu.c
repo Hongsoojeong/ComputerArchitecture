@@ -4,7 +4,7 @@
 // Arithmetic unit
 int addSubtract(int X, int Y, int C) {
     if (C < 0 || C > 1) {
-        printf("error in addSubtract()...\n");
+        printf("\n[AddSubtract] Error\n");
         return 0;
     }
     if (C == 0)
@@ -17,7 +17,7 @@ int addSubtract(int X, int Y, int C) {
 int logicOperation(int X, int Y, int C)
 {
     if (C < 0 || C > 3) {
-        printf("error in logicOperation()...\n");
+        printf("\n[LogicOperation] Error\n");
         return 0;
     }
 
@@ -38,7 +38,7 @@ int shiftOperation(int V, int Y, int C)
     int ret;
     //    printf("%d\n", V);
     if (C < 0 || C > 3) {
-        printf("error in shiftOperation()...\n");
+        printf("\n[ShiftOperation] Error\n");
         return 0;
     }
 
