@@ -37,7 +37,7 @@ int shiftOperation(int V, int Y, int C)
 {
     int ret;
     //    printf("%d\n", V);
-    if (C < 0 || C > 3 ){
+    if (C < 0 || C > 3) {
         printf("error in shiftOperation()...\n");
         return 0;
     }

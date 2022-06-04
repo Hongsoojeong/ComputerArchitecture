@@ -42,8 +42,8 @@ int stepProgram() {
     unsigned int rd = instruction.RI.rd;
     unsigned int sh = instruction.RI.shamt;
     unsigned int address = instruction.JI.address;
-    unsigned int u_imm = instruction.II.immediate & 0xffff;
-    int imm = instruction.II.immediate; // Sign Extendted
+    unsigned int u_imm = instruction.II.operand & 0xffff;
+    int imm = instruction.II.operand; // Sign Extendted
     //printf("opcode: %x, funct: %x, rs:%x, rt:%x, rd:%x, sh:%x, address:%x, u_imm:%x, imm:%x\n", opcode, funct, rs, rt, rd, sh, address, u_imm, imm);
 
    // 3. EX, MA, RW: ���ɾ �б��ϰ� �ش�Ǵ� �Լ� ����

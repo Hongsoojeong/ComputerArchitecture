@@ -12,7 +12,7 @@ union IR {
     } RI;
 
     struct IFormat {
-        int immediate : 16;
+        int operand : 16;
         unsigned int rt : 5;
         unsigned int rs : 5;
         unsigned int op : 6;

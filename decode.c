@@ -19,8 +19,8 @@ void instructionToString(unsigned int word, char** str) {
     char* rd = REGISTER_NAME[instruction.RI.rd];
     unsigned int sh = instruction.RI.shamt;
     unsigned int target = instruction.JI.address;
-    unsigned int u_immediate = instruction.II.immediate;
-    int immediate = (int)instruction.II.immediate; // Sign Extendted
+    unsigned int u_immediate = instruction.II.operand;
+    int immediate = (int)instruction.II.operand; // Sign Extendted
 
     if (opcode == R_FORMAT) {
         switch (funct) {
