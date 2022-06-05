@@ -3,7 +3,9 @@
 ### MIPS 시뮬레이터 구현하기
 
 ## 프로그램 사용방법
-### 명령어 종류
+<details>
+<summary>명령어 종류</summary>
+<div markdown="1">
 
 + l : Load program
   +  실행파일을 simulator 메모리에 올리는 명령어
@@ -38,3 +40,7 @@
   
 + h : help
   + 도움말 출력
+
+</div>
+</details>
+
