@@ -2,6 +2,7 @@
 ## 22-1학기 컴퓨터 구조 과목 기말프로젝트
 ### MIPS 시뮬레이터 구현하기
 
+[공동 워크스페이스_노션](https://chestnut-raptorex-0b7.notion.site/9-dbb4d7240a6e44789969f3909aba4519)
 ## 프로그램 사용방법
 <details>
 <summary>명령어 종류</summary>
