@@ -36,7 +36,6 @@ int logicOperation(int X, int Y, int C)
 int shiftOperation(int V, int Y, int C)
 {
     int ret;
-    //    printf("%d\n", V);
     if (C < 0 || C > 3) {
         printf("\n[ShiftOperation] Error\n");
         return 0;

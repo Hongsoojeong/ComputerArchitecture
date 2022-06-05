@@ -47,7 +47,7 @@ int stepProgram() {
             case MFHI:    return mfhi(rd);
             case MFLO:    return mflo(rd);
             case MUL:     return mul(rs, rt);
-            case ADD:     return addTest(rd, rs, rt);
+            case ADD:     return add(rd, rs, rt);
             case SUB:     return sub(rd, rs, rt);
             case AND:     return aNd(rd, rs, rt);
             case OR:      return oR(rd, rs, rt);
@@ -61,7 +61,7 @@ int stepProgram() {
         switch (opcode) {
             case J:    return j(address);
             case JAL:  return jal(address);
-            case BLTZ: return bltz(rs, rt, imm);
+            case BLTZ: return bltz(rs, 0, imm);
             case BEQ:  return beq(rs, rt, imm);
             case BNE:  return bne(rs, rt, imm);
             case ADDI: return addi(rt, rs, imm);

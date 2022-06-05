@@ -23,7 +23,7 @@ enum FROM_ALU {
     SetLess = 4
 };
 
-int addTest(int rd, int rs, int rt) {
+int add(int rd, int rs, int rt) {//이름 바꾸기 원래 addTest
     REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Add, &Z);
     return 0;
 }
@@ -36,7 +36,6 @@ int addi(int rt, int rs, int imm) {
 
 int sub(int rd, int rs, int rt) {
     REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Sub, &Z);
-    
     return 0;
 }
 
@@ -53,21 +52,19 @@ int oR(int rd, int rs, int rt) {
 }
 
 int xOr(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Xor, Z);
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Xor, &Z);
     
     return 0;
 }
 
 int nor(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Nor, Z);
-    //   printf("[NOR] : REGISTER[rd] %x\n", REGISTER[rd]);
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Nor, &Z);
     return 0;
 }
 
 //SET ON LESS THAN
 int slt(int rd, int rs, int rt) {
-    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], SetLess, Z);
-    //  printf("[SLT] : REGISTER[rd] %x\n", REGISTER[rd]);
+    REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], SetLess, &Z);
     return 0;
 }
 
@@ -101,12 +98,12 @@ int bne(int rs, int rt, int imm) {
     return 0;
 }
 
-int* z;
+
 
 int slti(int rt, int rs, int imm) {
     int ret;
     ret = REG(rs, 0, 0);
-    if (ALU(ret, imm, 4, NULL)) REG(rt, rs, 1);
+    REGISTER[rt] = (ALU(ret, imm, 4, NULL));
     return 0;
 }
 
@@ -132,8 +129,6 @@ int xori(int rt, int rs, int imm) {
     return 0;
 }
 int lui(int rt, int imm) {//load upper immediate
-    
-    //REG(rt, (imm & 0xffff) << 16, 1);
     REGISTER[rt] = (imm & 0xffff) << 16;
     
     return 0;
@@ -141,47 +136,47 @@ int lui(int rt, int imm) {//load upper immediate
 
 int lw(int rt, int imm, int rs) {
     int ret;
-    ret = MEM(REG(rs, 0, 0) + 4 * imm, 0, 0, 2);
+    ret = MEM(REG(rs, 0, 0) + imm, 0, 0, 2);
     REG(rt, ret, 1);
     return 0;
 }
 int sw(int rt, int imm, int rs) {
-    //MEM(REG(rs, 0, 0) + 4 * imm, REG(rt, 0, 0), 1, 2);
+    MEM(REG(rs, 0, 0) + imm, REG(rt, 0, 0), 1, 2);
     return 0;
 
 }
 int lb(int rt, int imm, int rs) {
     int ret;
-    ret = MEM(REG(rs, 0, 0) + 4 * imm, 0, 0, 0);
+    ret = MEM(REG(rs, 0, 0) + imm, 0, 0, 0);
     REG(rt, ret, 1);
     return 0;
 
 }
 int sb(int rt, int imm, int  rs) {
-    MEM(REG(rs, 0, 0) + 4 * imm, REG(rt, 0, 0), 1, 0);
+    MEM(REG(rs, 0, 0) + imm, REG(rt, 0, 0), 1, 0);
     return 0;
 
 }
 int lbu(int rt, int imm, int rs) {
     int ret;
-    ret = MEM(REG(rs, 0, 0) + 4 * imm, 0, 0, 0);
+    ret = MEM(REG(rs, 0, 0) + imm, 0, 0, 0);
     REG(rt, ret, 1);
     return 0;
 
 }
 
 int sll(int rd, int rt, int sh) {
-    REGISTER[rd] = ALU(REGISTER[rt], sh, 1, &Z);
+    REGISTER[rd] = ALU(sh, REGISTER[rt], 1, &Z);
     return 0;
 }
 
 int srl(int rd, int rt, int sh) {
-    REGISTER[rd] = ALU(REGISTER[rt], sh, 2, NULL);
+    REGISTER[rd] = ALU(sh, REGISTER[rt], 2, NULL);
     return 0;
 }
 
 int sra(int rd, int rt, int sh) {
-    REGISTER[rd] = ALU(REGISTER[rt], sh, 3, NULL);
+    REGISTER[rd] = ALU(sh, REGISTER[rt], 3, NULL);
     return 0;
 }
 

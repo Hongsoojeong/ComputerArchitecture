@@ -6,6 +6,7 @@
 #include "load.h"
 #include "step.h"
 #include <Windows.h>
+#include "test.h"
 #define _crt_secure_no_warnings
 
 #define buffer_size 1024
@@ -78,6 +79,11 @@ int main(void) {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             break;
         }
+        //else if (!strcmp(cmd, "test")) {
+        //    RtypeTest(1, 5, 9);
+        //    JtypeTest(0x40000010);
+        //    ItypeTest(1, 5, 11);
+        //}
         else if (!strcmp(cmd, "l")) { //load
             printf("> Enter the FileName  : ");
             scanf("%s", filename, 20 * sizeof(char));
@@ -117,20 +123,19 @@ int main(void) {
         }
         else if (!strcmp(cmd, "j")) {
             printf("> Enter The Address : ");
-            scanf("%s", rn);
+            scanf("%s", rn, 20 * sizeof(char));
             getchar();
-            jumpProgram(rn);
+            temp_rn = (unsigned int)strtoul(rn, NULL, 16);
+            jumpProgram(temp_rn);
         }
         else if (!strcmp(cmd, "sm")) {
             printf("> Enter the Memory :");
-            scanf("%s", rn);
+            scanf("%s", rn, 20 * sizeof(char));
             getchar();
             printf("> Enter the Value : ");
-            scanf("%s", value);
-            scanf("%s", value);
+            scanf("%s", value, 20 * sizeof(char));
             getchar();
-
-            temp_rn = atoi(rn);
+            temp_rn = (unsigned int)strtoul(rn, NULL, 16);
             temp_v = (unsigned int)strtoul(value, NULL, 16);
             if (!temp_v)
             {
@@ -138,26 +143,28 @@ int main(void) {
                 printf("[Error] Value\n");
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
-            else if ((temp_rn > 31) || (temp_rn < 0))
+            else if (setMemory(temp_rn, temp_v)==-1)
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                 printf("[Error] Memory\n");
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
-            setMemory(temp_rn, temp_v);
+            else printf("Success set memory\n");
+            //setMemory(temp_rn, temp_v);
             /*else if (setMemory(temp_rn, temp_v))
                 printf("Success set register\n");*/
             
         }
         else if (!strcmp(cmd, "sr")) {
             printf("> Enter the Register :");
-            scanf_s("%s", rn);
+            scanf("%s", rn);
             getchar();
             printf("> Enter the Value :");
-            scanf_s("%s", value);
+            scanf("%s", value);
             getchar();
             temp_rn = atoi(rn);
             temp_v = (unsigned int)strtoul(value, NULL, 16);
+
             if (!temp_v)
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
@@ -170,7 +177,7 @@ int main(void) {
                 printf("[Error] Register\n");
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
-            else if (setRegister(temp_rn, temp_v))
+            else if (!setRegister(temp_rn, temp_v))
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
                 printf("Set Register Success!\n");

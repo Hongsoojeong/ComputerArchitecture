@@ -13,4 +13,4 @@ int MEM(unsigned int A, int V, int nRW, int S);
 void resetMem();
 // void memoryTest();
 void viewMemory(unsigned int start, unsigned int end);
-void setMemory(unsigned int A, int V);
+int setMemory(unsigned int A, int V);

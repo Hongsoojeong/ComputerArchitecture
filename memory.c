@@ -3,10 +3,6 @@
 #include <string.h>
 #include "memory.h"
 
-//#include "register.h"
-//#include "decode.h"
-//#include "step.c"
-//#include "instruction_execution.h"
 #define PROG_START 0x00400000
 #define PROG_END 0x00500000
 #define DATA_START 0x10000000
@@ -37,6 +33,7 @@ int MEM(unsigned int A, int V, int nRW, int S) {
 		return -1;
 	}
 	//offset processing for alignment
+
 	if (S == 0) {//byte
 		if (nRW == 0) { //read
 			return pM[offset];
@@ -106,9 +103,9 @@ void viewMemory(unsigned int start, unsigned int end)
 	printf("=========== END ===========");
 	printf("\n\n");
 }
-void setMemory(unsigned int A, int V)
+int setMemory(unsigned int A, int V)
 {
-	MEM(A, V, 1, 2);
+	return MEM(A, V, 1, 2);
 }
 
 

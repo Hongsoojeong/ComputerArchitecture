@@ -3,7 +3,7 @@ int logicOperation(int X, int Y, int C);
 int shiftOperation(int V, int Y, int C);
 int checkSetLess(int X, int Y);
 int ALU(int X, int Y, int C, int* Z);
-int addTest(int rd, int rs, int rt);
+int add(int rd, int rs, int rt);
 int addi(int rt, int rs, int imm);
 int sub(int rd, int rs, int rt);
 int aNd(int rd, int rs, int rt);

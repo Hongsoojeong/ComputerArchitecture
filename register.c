@@ -6,7 +6,7 @@
 //#include "decode.h"
 //#include "step.c"
 //#include "instruction_execution.h"
-#define R_SIZE 32
+//#define R_SIZE 32
 
 int* Z;
 int PC = 0x400000;
