@@ -39,7 +39,7 @@
   + sr <register number> <value> 
   + 특정 레지스터의 값을 설정해준다.
   
-+ h : help
++ help : Print Command List
   + 도움말 출력
 
 </div>
