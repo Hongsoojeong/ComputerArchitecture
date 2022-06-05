@@ -9,9 +9,7 @@
 #include "test.h"
 #define _crt_secure_no_warnings
 
-#define buffer_size 1024
-#define memory_size 0x100000
-#define register_size 32
+//#define buffer_size 1024
 
 
 unsigned int invertEndian(unsigned int data)
@@ -68,7 +66,6 @@ int main(void) {
     while (EXIT) {
         printf("\n");
         printf("[ Enter The Command ] : ");
-       // fflush(stdout);
         scanf("%s", cmd);
         getchar();
       
@@ -79,11 +76,6 @@ int main(void) {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             break;
         }
-        //else if (!strcmp(cmd, "test")) {
-        //    RtypeTest(1, 5, 9);
-        //    JtypeTest(0x40000010);
-        //    ItypeTest(1, 5, 11);
-        //}
         else if (!strcmp(cmd, "l")) { //load
             printf("> Enter the FileName  : ");
             scanf("%s", filename, 20 * sizeof(char));
@@ -92,7 +84,7 @@ int main(void) {
             loadProgram(filename);
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         }
-        else if (!strcmp(cmd, "m")) {
+        else if (!strcmp(cmd, "m")) { //view memory
             printf("> Enter the Start  : ");
             scanf("%s", rn, 20 * sizeof(char));
             getchar();
@@ -105,30 +97,30 @@ int main(void) {
             viewMemory(temp_rn, temp_v);
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         }
-        else if (!strcmp(cmd, "r")) {
+        else if (!strcmp(cmd, "r")) { //view register
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
             viewRegister();
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         }
-        else if (!strcmp(cmd, "g")) {
+        else if (!strcmp(cmd, "g")) { //go
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
             goProgram();
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         }
-        else if (!strcmp(cmd, "s")) {
+        else if (!strcmp(cmd, "s")) {//step
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
             stepProgram();
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 
         }
-        else if (!strcmp(cmd, "j")) {
+        else if (!strcmp(cmd, "j")) {//jump
             printf("> Enter The Address : ");
             scanf("%s", rn, 20 * sizeof(char));
             getchar();
             temp_rn = (unsigned int)strtoul(rn, NULL, 16);
             jumpProgram(temp_rn);
         }
-        else if (!strcmp(cmd, "sm")) {
+        else if (!strcmp(cmd, "sm")) {//set memory
             printf("> Enter the Memory :");
             scanf("%s", rn, 20 * sizeof(char));
             getchar();
@@ -149,13 +141,9 @@ int main(void) {
                 printf("[Error] Memory\n");
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
-            else printf("Success set memory\n");
-            //setMemory(temp_rn, temp_v);
-            /*else if (setMemory(temp_rn, temp_v))
-                printf("Success set register\n");*/
-            
+            else printf("Success set memory\n");            
         }
-        else if (!strcmp(cmd, "sr")) {
+        else if (!strcmp(cmd, "sr")) {//set register
             printf("> Enter the Register :");
             scanf("%s", rn);
             getchar();
@@ -190,7 +178,7 @@ int main(void) {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
         }
-        else if (!strcmp(cmd, "help")) {
+        else if (!strcmp(cmd, "help")) {//help
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
         printf("\n\n");
         printf("    [ Command] \n");

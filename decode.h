@@ -67,7 +67,7 @@ enum FUNCT {
     SLT = 42
 };
 
-// 명령어 8 x 6 배열을 1차원으로 폈음
+
 static char OPCODE_STR[48][10] = {
   "R-format", "bltz", "j", "jal", "beq", "bne", "", "", "addi", "", "slti", "", "andi", "ori", "xori", "lui", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "lb", "", "", "lw", "lbu", "", "", "", "sb", "", "", "sw", "", "", "", ""
 };
@@ -75,8 +75,6 @@ static char OPCODE_STR[48][10] = {
 static char FUNCT_STR[48][10] = {
   "sll", "", "srl", "sra", "", "", "", "", "jr", "", "", "", "syscall", "", "", "", "", "mfhi", "", "mflo", "", "", "", "", "", "mul", "", "", "", "", "", "", "add", "", "sub", "", "and", "or", "xor", "nor", "", "", "slt", "", "", "", "", ""
 };
-void printInstruction(unsigned int word);
-//// 명령어 워드를 받으면 문자열로 포맷팅합니다.
+
 void instructionToString(unsigned int word, char** str);
-//
-//// 명령어 워드를 받으면 문자열로 포맷팅 후 출력
+void printInstruction(unsigned int word);

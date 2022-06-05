@@ -3,18 +3,9 @@
 #include <string.h>
 #include "memory.h"
 
-#define PROG_START 0x00400000
-#define PROG_END 0x00500000
-#define DATA_START 0x10000000
-#define DATA_END 0x10100000
-#define STAK_START 0x7FF00000
-#define STAK_END 0x80000000
-
 const int M_SIZE = 0x100000;
 unsigned char progMEM[0x100000], dataMEM[0x100000], stakMEM[0x100000]; //MiB
 
-// enum accessType { RD, WR };
-// enum accessSize { BYTE, HALF, WORD };
 
 int MEM(unsigned int A, int V, int nRW, int S) {
 	unsigned int sel, offset;

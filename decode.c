@@ -19,8 +19,8 @@ void instructionToString(unsigned int word, char** str) {
     char* rd = REGISTER_NAME[instruction.RI.rd];
     unsigned int sh = instruction.RI.shamt;
     unsigned int target = instruction.JI.address;
-    unsigned int u_immediate = instruction.II.operand;
-    int immediate = (int)instruction.II.operand; // Sign Extendted
+    unsigned int immediate = instruction.II.operand;
+    int signExtendedimm = (int)instruction.II.operand; // Sign Extendted
 
     if (opcode == R_FORMAT) {
         switch (funct) {
@@ -46,30 +46,30 @@ void instructionToString(unsigned int word, char** str) {
             sprintf(*str, "%s %x", op, target);
             break;
         case BLTZ:
-            sprintf(*str, "%s %s, %d", op, rs, immediate);
+            sprintf(*str, "%s %s, %d", op, rs, signExtendedimm);
             break;
         case BEQ: case BNE:
-            sprintf(*str, "%s %s, %s, %d", op, rs, rt, immediate);
+            sprintf(*str, "%s %s, %s, %d", op, rs, rt, signExtendedimm);
             break;
         case ADDI: case ADDIU: case SLTI: case SLTIU:
-            sprintf(*str, "%s %s, %s, %d", op, rt, rs, immediate);
+            sprintf(*str, "%s %s, %s, %d", op, rt, rs, signExtendedimm);
             break;
         case ANDI: case ORI: case XORI:
-            sprintf(*str, "%s %s, %s, %d", op, rt, rs, u_immediate);
+            sprintf(*str, "%s %s, %s, %d", op, rt, rs, immediate);
             break;
         case LUI:
-            sprintf(*str, "%s %s, %d", op, rt, u_immediate);
+            sprintf(*str, "%s %s, %d", op, rt, immediate);
             break;
         case LW: case SW: case LB: case SB: case LBU:
-            sprintf(*str, "%s %s, %d(%s)", op, rt, immediate, rs);
+            sprintf(*str, "%s %s, %d(%s)", op, rt, signExtendedimm, rs);
             break;
         default:
-            sprintf(*str, "[Unknown] Detect The Unkown Instuction -> %x", instruction.B);
+            sprintf(*str, "[Unknown] Detect The Unknown Instuction -> %x", instruction.B);
         }
     }
 }
 
-// 명령어 출력하기
+
 void printInstruction(unsigned int word) {
     char* str = (char*)malloc((100) * sizeof(char));
     instructionToString(word, &str);

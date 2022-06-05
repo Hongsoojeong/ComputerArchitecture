@@ -24,3 +24,5 @@ int RtypeTest(int rd, int rs, int rt);
 int JtypeTest(int address);
 int ItypeTest(int rs, int rt, int imm);
 int branchTest(int rs, int rt, int imm);
+//register test
+void registerTest();

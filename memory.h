@@ -6,11 +6,8 @@
 #define STAK_START 0x7FF00000
 #define STAK_END 0x80000000
 
-// enum accessType { RD, WR};
-// enum accessSize {BYTE, HALF, WORD};
 
 int MEM(unsigned int A, int V, int nRW, int S);
 void resetMem();
-// void memoryTest();
 void viewMemory(unsigned int start, unsigned int end);
 int setMemory(unsigned int A, int V);

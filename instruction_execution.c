@@ -23,7 +23,7 @@ enum FROM_ALU {
     SetLess = 4
 };
 
-int add(int rd, int rs, int rt) {//이름 바꾸기 원래 addTest
+int add(int rd, int rs, int rt) {
     REGISTER[rd] = ALU(REGISTER[rs], REGISTER[rt], Add, &Z);
     return 0;
 }
@@ -185,7 +185,6 @@ int jr(int rs) {
     return 0;
 }
 int j(int address) {
-    // PC ← {(PC + 4)[31:28], address, 00}
     PC = ((PC + 4) & 0xf0000000) | (address << 2);
     return 0;
 }

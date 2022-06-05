@@ -1,22 +1,18 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "memory.h"
 #include "register.h"
-//#include "decode.h"
-//#include "step.c"
-//#include "instruction_execution.h"
-//#define R_SIZE 32
+
 
 int* Z;
 int PC = 0x400000;
 int HI = 0;
-int LO = 0; //PC,HI,LO ���������� ����
-// unsigned int IR; //instruction register
+int LO = 0; 
+
 
 unsigned int REGISTER[R_SIZE]; //register
 char REGISTER_NAME[R_SIZE][6] = { "$zero", "$at", "$v0", "$v1", "$a0", "$a1", "$a2", "$a3" , "$t0" , "$t1", "$t2", "$t3", "$t4", "$t5", "$t6", "$t7","$s0", "$s1", "$s2", "$s3", "$s4", "$s5", "$s6", "$s7", "$t8", "$t9", "$k0", "$k1","$gp","$sp","$fp","$ra" };
-//register �̸�
+//register name
 
 unsigned int REG(unsigned int A, int V, int nRW)
 {
@@ -25,7 +21,7 @@ unsigned int REG(unsigned int A, int V, int nRW)
 	return 0;
 }
 
-void viewRegister()//r
+void viewRegister() //r
 {
 	printf("\n\n");
 	printf("========View Register =========\n");
@@ -54,14 +50,3 @@ int setRegister(unsigned int A, int V) {
 	return 0;
 }
 
-void registerTest() {
-	viewRegister();
-	setRegister(1, 0x41);
-	viewRegister();
-	setRegister(31, 0x41);
-	viewRegister();
-	setRegister(1, 0x1f);
-	viewRegister();
-	setRegister(31, 0xff);
-	viewRegister();
-}

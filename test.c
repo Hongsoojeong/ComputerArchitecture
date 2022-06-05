@@ -3,6 +3,7 @@
 #include "register.h"
 extern unsigned int REGISTER[32];
 extern int PC;
+
 //R-Type
 void addTest(int rd, int rs, int rt) {
 	add(rd, rs, rt);
@@ -174,10 +175,6 @@ void xoriTest(int rt, int rs, int imm) {
 }
 
 
-
-
-
-
 int RtypeTest(int rd, int rs, int rt) {
 	addTest(rd, rs, rt);
 	subTest(rd, rs, rt);
@@ -208,4 +205,16 @@ int branchTest(int rs, int rt, int imm) {
 	bneTest(rs, rt, imm);
 	bltzTest(rs, 0, imm);
 	return 0;
+}
+
+void registerTest() {
+	viewRegister();
+	setRegister(1, 0x41);
+	viewRegister();
+	setRegister(31, 0x41);
+	viewRegister();
+	setRegister(1, 0x1f);
+	viewRegister();
+	setRegister(31, 0xff);
+	viewRegister();
 }
