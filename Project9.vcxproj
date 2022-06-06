@@ -156,7 +156,6 @@
     <ClInclude Include="decode.h" />
     <ClInclude Include="instruction_execution.h" />
     <ClInclude Include="load.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="register.h" />
     <ClInclude Include="step.h" />
