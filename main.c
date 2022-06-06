@@ -9,8 +9,6 @@
 #include "test.h"
 #define _crt_secure_no_warnings
 
-//#define buffer_size 1024
-
 
 unsigned int invertEndian(unsigned int data)
 {
