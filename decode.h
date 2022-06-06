@@ -3,12 +3,12 @@ union IR {
     unsigned int B;
 
     struct RFormat {
-        unsigned int funct : 6;
-        unsigned int shamt : 5;
+        unsigned int fct : 6;
+        unsigned int sht : 5;
         unsigned int rd : 5;
         unsigned int rt : 5;
         unsigned int rs : 5;
-        unsigned int opcode : 6;
+        unsigned int opc : 6;
     } RI;
 
     struct IFormat {
@@ -76,5 +76,5 @@ static char FUNCT_STR[48][10] = {
   "sll", "", "srl", "sra", "", "", "", "", "jr", "", "", "", "syscall", "", "", "", "", "mfhi", "", "mflo", "", "", "", "", "", "mul", "", "", "", "", "", "", "add", "", "sub", "", "and", "or", "xor", "nor", "", "", "slt", "", "", "", "", ""
 };
 
-void instructionToString(unsigned int word, char** str);
-void printInstruction(unsigned int word);
+void getInstructionStr(unsigned int inst, char** str);
+void printInstructionStr(unsigned int inst);

@@ -22,17 +22,17 @@ int stepProgram() {
     union IR instruction = instructionFetch();
     printf("\n");
     printf("> Excuting Instruction < \n");
-    printInstruction(instruction.B);
+    printInstructionStr(instruction.B);
 
     if (instruction.B == 0) return 1;
 
     //   // 2. Instruction Decode: ���ɾ� �ؼ�
-    unsigned int opcode = instruction.RI.opcode;
-    unsigned int funct = instruction.RI.funct;
+    unsigned int opcode = instruction.RI.opc;
+    unsigned int funct = instruction.RI.fct;
     unsigned int rs = instruction.RI.rs;
     unsigned int rt = instruction.RI.rt;
     unsigned int rd = instruction.RI.rd;
-    unsigned int sh = instruction.RI.shamt;
+    unsigned int sh = instruction.RI.sht;
     unsigned int address = instruction.JI.address;
     unsigned int u_imm = instruction.II.operand & 0xffff;
     int imm = instruction.II.operand; // Sign Extendted

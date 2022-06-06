@@ -5,7 +5,7 @@
 #include "register.h"
 #include "decode.h"
 #include "step.h"
-#include "main.h"
+
 
 
 enum READ_WRITE { READ, WRITE };
@@ -71,7 +71,7 @@ void loadProgram(const char* filename) {
     for (int i = 0; i < instructionLen; i++) {
         int offset = i + 2; 
         unsigned int word = invertEndian(((unsigned int*)BINARY_BUFFER)[offset]);
-        printInstruction(word);
+        printInstructionStr(word);
         MEM(0x400000 + 4 * i, word, WRITE, WORD);
     }
     printf("\n");

@@ -7,23 +7,23 @@
 
 
 extern char REGISTER_NAME[32][6];
-void instructionToString(unsigned int word, char** str) {
+void getInstructionStr(unsigned int inst, char** str) {
 
-    union IR instruction = { word };
+    union IR instruction = { inst };
 
-    unsigned int opcode = instruction.RI.opcode;
-    unsigned int funct = instruction.RI.funct;
-    char* op = opcode ? OPCODE_STR[opcode] : FUNCT_STR[funct];
+    unsigned int opc = instruction.RI.opc;
+    unsigned int fct = instruction.RI.fct;
+    char* op = opc ? OPCODE_STR[opc] : FUNCT_STR[fct];
     char* rs = REGISTER_NAME[instruction.RI.rs];
     char* rt = REGISTER_NAME[instruction.RI.rt];
     char* rd = REGISTER_NAME[instruction.RI.rd];
-    unsigned int sh = instruction.RI.shamt;
-    unsigned int target = instruction.JI.address;
+    unsigned int sh = instruction.RI.sht;
+    unsigned int address = instruction.JI.address;
     unsigned int immediate = instruction.II.operand;
     int signExtendedimm = (int)instruction.II.operand; // Sign Extendted
 
-    if (opcode == R_FORMAT) {
-        switch (funct) {
+    if (opc == R_FORMAT) {
+        switch (fct) {
         case SLL: case SRL: case SRA:
             sprintf(*str, "%s %s, %s, %d", op, rd, rt, sh);
             break;
@@ -41,9 +41,9 @@ void instructionToString(unsigned int word, char** str) {
         }
     }
     else {
-        switch (opcode) {
+        switch (opc) {
         case J: case JAL:
-            sprintf(*str, "%s %x", op, target);
+            sprintf(*str, "%s %x", op, address);
             break;
         case BLTZ:
             sprintf(*str, "%s %s, %d", op, rs, signExtendedimm);
@@ -70,9 +70,9 @@ void instructionToString(unsigned int word, char** str) {
 }
 
 
-void printInstruction(unsigned int word) {
+void printInstructionStr(unsigned int inst) {
     char* str = (char*)malloc((100) * sizeof(char));
-    instructionToString(word, &str);
+    getInstructionStr(inst, &str);
     printf("%s\n", str);
     free(str);
 }
