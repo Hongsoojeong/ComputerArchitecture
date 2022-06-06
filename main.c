@@ -15,9 +15,9 @@
 int main(void) {
     char* cmd = (char*)malloc(sizeof(char) * 100); //command
     char* filename = (char*)malloc(sizeof(char) * 100);
-    char* rn = (char*)malloc(sizeof(char) * 10); //input number
-    char* value = (char*)malloc(sizeof(char) * 10); //input value
-    unsigned int temp_rn, temp_v;
+    char* val1 = (char*)malloc(sizeof(char) * 10); //input number
+    char* val2 = (char*)malloc(sizeof(char) * 10); //input value
+    unsigned int temp_v1, temp_v2;
     int start = 0, end = 0;
     int EXIT = 1;
 
@@ -74,15 +74,15 @@ int main(void) {
         }
         else if (!strcmp(cmd, "m")) { //view memory
             printf("> Enter the Start  : ");
-            scanf("%s", rn, 20 * sizeof(char));
+            scanf("%s", val1, 20 * sizeof(char));
             getchar();
             printf("> Enter the End    : ");
-            scanf("%s", value, 20 * sizeof(char));
+            scanf("%s", val2, 20 * sizeof(char));
             getchar();
-            temp_rn = (unsigned int)strtoul(rn, NULL, 16);
-            temp_v = (unsigned int)strtoul(value, NULL, 16);
+            temp_v1 = (unsigned int)strtoul(val1, NULL, 16);
+            temp_v2 = (unsigned int)strtoul(val2, NULL, 16);
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-            viewMemory(temp_rn, temp_v);
+            viewMemory(temp_v1, temp_v2);
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         }
         else if (!strcmp(cmd, "r")) { //view register
@@ -103,27 +103,27 @@ int main(void) {
         }
         else if (!strcmp(cmd, "j")) {//jump
             printf("> Enter The Address : ");
-            scanf("%s", rn, 20 * sizeof(char));
+            scanf("%s", val1, 20 * sizeof(char));
             getchar();
-            temp_rn = (unsigned int)strtoul(rn, NULL, 16);
-            jumpProgram(temp_rn);
+            temp_v1 = (unsigned int)strtoul(val1, NULL, 16);
+            jumpProgram(temp_v1);
         }
         else if (!strcmp(cmd, "sm")) {//set memory
             printf("> Enter the Memory :");
-            scanf("%s", rn, 20 * sizeof(char));
+            scanf("%s", val1, 20 * sizeof(char));
             getchar();
             printf("> Enter the Value : ");
-            scanf("%s", value, 20 * sizeof(char));
+            scanf("%s", val2, 20 * sizeof(char));
             getchar();
-            temp_rn = (unsigned int)strtoul(rn, NULL, 16);
-            temp_v = (unsigned int)strtoul(value, NULL, 16);
-            if (!temp_v)
+            temp_v1 = (unsigned int)strtoul(val1, NULL, 16);
+            temp_v2 = (unsigned int)strtoul(val2, NULL, 16);
+            if (!temp_v2)
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                 printf("[Error] Value\n");
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
-            else if (setMemory(temp_rn, temp_v)==-1)
+            else if (setMemory(temp_v1, temp_v2)==-1)
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                 printf("[Error] Memory\n");
@@ -133,27 +133,27 @@ int main(void) {
         }
         else if (!strcmp(cmd, "sr")) {//set register
             printf("> Enter the Register :");
-            scanf("%s", rn);
+            scanf("%s", val1);
             getchar();
             printf("> Enter the Value :");
-            scanf("%s", value);
+            scanf("%s", val2);
             getchar();
-            temp_rn = atoi(rn);
-            temp_v = (unsigned int)strtoul(value, NULL, 16);
+            temp_v1 = atoi(val1);
+            temp_v2 = (unsigned int)strtoul(val2, NULL, 16);
 
-            if (!temp_v)
+            if (!temp_v2)
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                 printf("[Error] Value\n");
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
-            if ((temp_rn > 31) || (temp_rn < 0))
+            if ((temp_v1 > 31) || (temp_v1 < 0))
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                 printf("[Error] Register\n");
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
             }
-            else if (!setRegister(temp_rn, temp_v))
+            else if (!setRegister(temp_v1, temp_v2))
             {
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
                 printf("Set Register Success!\n");
@@ -193,8 +193,8 @@ int main(void) {
 
     free(filename);
     free(cmd);
-    free(rn);
-    free(value);
+    free(val1);
+    free(val2);
 
 
     return 0;
