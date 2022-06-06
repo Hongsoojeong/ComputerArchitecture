@@ -21,7 +21,7 @@ int main(void) {
     char* value = (char*)malloc(sizeof(char) * 10); //input value
     unsigned int temp_rn, temp_v;
     int start = 0, end = 0;
-    int EXIT = 1, is_loaded = 0, step_result = 0;
+    int EXIT = 1;
 
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
