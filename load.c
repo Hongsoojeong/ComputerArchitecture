@@ -5,7 +5,7 @@
 #include "register.h"
 #include "decode.h"
 #include "step.h"
-#include "main.h"
+
 
 
 enum READ_WRITE { READ, WRITE };
