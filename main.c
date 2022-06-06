@@ -10,17 +10,7 @@
 #define _crt_secure_no_warnings
 
 
-unsigned int invertEndian(unsigned int data)
-{
-    unsigned char c[4];
 
-    c[3] = (unsigned char)data; data = data >> 8;
-    c[2] = (unsigned char)data; data = data >> 8;
-    c[1] = (unsigned char)data; data = data >> 8;
-    c[0] = (unsigned char)data;
-
-    return *(unsigned int*)c;
-}
 
 int main(void) {
     char* cmd = (char*)malloc(sizeof(char) * 100); //command
@@ -29,36 +19,36 @@ int main(void) {
     char* value = (char*)malloc(sizeof(char) * 10); //input value
     unsigned int temp_rn, temp_v;
     int start = 0, end = 0;
-    int EXIT = 1, is_loaded = 0, step_result = 0;
+    int EXIT = 1;
 
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
 
-    system("title ƒƒ«ª≈Õ ±∏¡∂ «¡∑Œ¡ß∆Æ");
-    printf("¶£¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶§\n");
-    printf("¶¢       °·°·°·    °·    °·     °·°·   °·     °·      °·  °·°·°·  °·°·°·°·°·    °·°·        °·      ¶¢\n");
-    printf("¶¢     °·               °· °·  °· °·   °·   °·       °·       °·       °·     °·     °·    °· °·°·°·¶¢\n");
-    printf("¶¢      °·°·°·    °·   °·    °·    °·   °·    °·    °·    °· °·      °·    °·        °·  °·°·       ¶¢\n");
-    printf("¶¢           °·   °·    °·    °·    °·   °·    °·  °·    °·    °·   °·    °·        °·  °·          ¶¢\n");
-    printf("¶¢          °·   °·    °·    °·    °·   °·    °·   °·    °· °·°·   °·     °·     °·     °·          ¶¢\n");
-    printf("¶¢  °·°·°·°·    °·    °·    °·   °·    °·°·°·     °·           °·    °·    °· °·    °·              ¶¢\n");
-    printf("¶¢                                                                                                  ¶¢\n");
-    printf("¶¢                                                                [ƒƒ«ª≈Õ ±∏¡∂ «¡∑Œ¡ß∆Æ]            ¶¢\n");
-    printf("¶¶¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶°¶•\n");
+    system("title Ïª¥Ìì®ÌÑ∞ Íµ¨Ï°∞ ÌîÑÎ°úÏ†ùÌä∏");
+    printf("‚îå‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îê\n");
+    printf("‚îÇ       ‚ñ†‚ñ†‚ñ†    ‚ñ†    ‚ñ†     ‚ñ†‚ñ†   ‚ñ†     ‚ñ†      ‚ñ†  ‚ñ†‚ñ†‚ñ†  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†    ‚ñ†‚ñ†        ‚ñ†      ‚îÇ\n");
+    printf("‚îÇ     ‚ñ†               ‚ñ† ‚ñ†  ‚ñ† ‚ñ†   ‚ñ†   ‚ñ†       ‚ñ†       ‚ñ†       ‚ñ†     ‚ñ†     ‚ñ†    ‚ñ† ‚ñ†‚ñ†‚ñ†‚îÇ\n");
+    printf("‚îÇ      ‚ñ†‚ñ†‚ñ†    ‚ñ†   ‚ñ†    ‚ñ†    ‚ñ†   ‚ñ†    ‚ñ†    ‚ñ†    ‚ñ† ‚ñ†      ‚ñ†    ‚ñ†        ‚ñ†  ‚ñ†‚ñ†       ‚îÇ\n");
+    printf("‚îÇ           ‚ñ†   ‚ñ†    ‚ñ†    ‚ñ†    ‚ñ†   ‚ñ†    ‚ñ†  ‚ñ†    ‚ñ†    ‚ñ†   ‚ñ†    ‚ñ†        ‚ñ†  ‚ñ†          ‚îÇ\n");
+    printf("‚îÇ          ‚ñ†   ‚ñ†    ‚ñ†    ‚ñ†    ‚ñ†   ‚ñ†    ‚ñ†   ‚ñ†    ‚ñ† ‚ñ†‚ñ†   ‚ñ†     ‚ñ†     ‚ñ†     ‚ñ†          ‚îÇ\n");
+    printf("‚îÇ  ‚ñ†‚ñ†‚ñ†‚ñ†    ‚ñ†    ‚ñ†    ‚ñ†   ‚ñ†    ‚ñ†‚ñ†‚ñ†     ‚ñ†           ‚ñ†    ‚ñ†    ‚ñ† ‚ñ†    ‚ñ†              ‚îÇ\n");
+    printf("‚îÇ                                                                                                  ‚îÇ\n");
+    printf("‚îÇ                                                                [Ïª¥Ìì®ÌÑ∞ Íµ¨Ï°∞ ÌîÑÎ°úÏ†ùÌä∏]            ‚îÇ\n");
+    printf("‚îî‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îò\n");
     printf("\n");
     printf("\n");
     printf("\n");
-    printf("                                     [ ∞°¥…«— ∏Ì∑…æÓ ]   \n");
-    printf("                                ®Á x :    Exit Program       \n");
-    printf("                                ®Ë l :    Load Program       \n");
-    printf("                                ®È m :    View Memory        \n");
-    printf("                                ®Í sm :   Set Memory        \n");
-    printf("                                ®Î r :    View Register      \n");
-    printf("                                ®Ï sr :   Set Register      \n");
-    printf("                                ®Ì g :    Go with Program    \n");
-    printf("                                ®Ó s :    Step with Program  \n");
-    printf("                                ®Ô j :    jump with Program  \n");
-    printf("                                ®Ô h :    help               \n");
+    printf("                                     [ Í∞ÄÎä•Ìïú Î™ÖÎ†πÏñ¥ ]   \n");
+    printf("                                ‚ë† x :    Exit Program       \n");
+    printf("                                ‚ë° l :    Load Program       \n");
+    printf("                                ‚ë¢ m :    View Memory        \n");
+    printf("                                ‚ë£ sm :   Set Memory        \n");
+    printf("                                ‚ë§ r :    View Register      \n");
+    printf("                                ‚ë• sr :   Set Register      \n");
+    printf("                                ‚ë¶ g :    Go with Program    \n");
+    printf("                                ‚ëß s :    Step with Program  \n");
+    printf("                                ‚ë® j :    jump with Program  \n");
+    printf("                                ‚ë® h :    help               \n");
     printf("\n\n");
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
     while (EXIT) {
@@ -180,16 +170,16 @@ int main(void) {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
         printf("\n\n");
         printf("    [ Command] \n");
-        printf("®Á x :    Exit Program       \n");
-        printf("®Ë l :    Load Program       \n");
-        printf("®È m :    View Memory        \n");
-        printf("®Í sm :   Set Memory        \n");
-        printf("®Î r :    View Register      \n");
-        printf("®Ï sr :   Set Register      \n");
-        printf("®Ì g :    Go with Program    \n");
-        printf("®Ó s :    Step with Program  \n");
-        printf("®Ô j :    jump with Program  \n");
-        printf("®Ô h :    help               \n");
+        printf("‚ë† x :    Exit Program       \n");
+        printf("‚ë° l :    Load Program       \n");
+        printf("‚ë¢ m :    View Memory        \n");
+        printf("‚ë£ sm :   Set Memory        \n");
+        printf("‚ë§ r :    View Register      \n");
+        printf("‚ë• sr :   Set Register      \n");
+        printf("‚ë¶ g :    Go with Program    \n");
+        printf("‚ëß s :    Step with Program  \n");
+        printf("‚ë® j :    jump with Program  \n");
+        printf("‚ë® h :    help               \n");
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         printf("\n\n");
 }

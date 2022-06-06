@@ -16,12 +16,23 @@ int readChar(FILE* fp, unsigned char* c) {
     if (fread(c, 1, 1, fp) != 1) return 1;
     else return 0;
 }
+unsigned int invertEndian(unsigned int data)
+{
+    unsigned char c[4];
+
+    c[3] = (unsigned char)data; data = data >> 8;
+    c[2] = (unsigned char)data; data = data >> 8;
+    c[1] = (unsigned char)data; data = data >> 8;
+    c[0] = (unsigned char)data;
+
+    return *(unsigned int*)c;
+}
 void loadProgram(const char* filename) {
     // read file
     FILE* fptr = NULL;
 
     if((fptr = fopen(filename, "rb")) == NULL) {
-        printf("ÆÄÀÏÀĞ±â ¿À·ù \n");
+        printf("Ã†Ã„Ã€ÃÃ€ÃÂ±Ã¢ Â¿Ã€Â·Ã¹ \n");
         return;
     }
 
